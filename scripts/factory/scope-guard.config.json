@@ -1,0 +1,9 @@
+{
+  "dataFolders": [
+    "packages/backend/convex/"
+  ],
+  "note": "Data folders for scope-guard rules d-f. Template: Convex lives in packages/backend/convex/ (incl. _generated).",
+  "extraHotFiles": [
+    "(^|/)convex\\.json$"
+  ]
+}

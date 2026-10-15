@@ -1,0 +1,57 @@
+name: Graphify
+
+# Rebuilds the knowledge graph on every push to integration.
+# Local AST only: graphifyy 0.9.74, `graphify extract . --code-only --no-cluster`.
+# No API key and no secrets. README:
+# https://github.com/Graphify-Labs/graphify/blob/v0.9.74/README.md
+#
+# Persistence: upload graphify-out/graph.json as an artifact.
+# integration-protection requires a pull request, so the graph stays an
+# artifact. Leave this workflow off the required-check list. Leave ci.yml
+# and the locked check names unchanged.
+
+# Phase 06 Step 3 (2026-10-03): output = Actions artifact, not a Factory App PR into docs/graph/,
+# because the Factory App doesn't exist yet. No pause check on purpose: read-only output.
+on:
+  push:
+    branches: [integration]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: graphify-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rebuild:
+    name: Rebuild graph
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 1
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          enable-cache: false
+
+      - name: Install graphifyy 0.9.74
+        run: |
+          uv tool install "graphifyy==0.9.74"
+          echo "$(uv tool dir --bin)" >> "$GITHUB_PATH"
+
+      - name: Extract code graph (local AST only)
+        run: graphify extract . --code-only --no-cluster
+
+      - name: Upload graph artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: graphify-graph
+          path: graphify-out/graph.json
+          if-no-files-found: error
+          retention-days: 14

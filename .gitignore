@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build / tooling
+.next/
+out/
+dist/
+.turbo/
+.expo/
+web-build/
+*.tsbuildinfo
+
+# Native (generated)
+**/ios/
+**/android/
+
+# Env — never commit secrets at any level
+.env
+.env.*
+!.env.example
+
+# Vercel local link metadata (per-machine)
+.vercel/
+
+# Logs / OS
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.DS_Store
+*.pem
+
+# IDE
+.idea/
+.vscode/
+!.vscode/extensions.json
+
+# Misc
+coverage/
+*.orig.*
+.metro-health-check*
+.git/commit-log.txt
+
+# Graphify working output (committed artefact is docs/graphs/)
+graphify-out/
+
+# Understand Anything scratch (artefact is .ua/knowledge-graph.json when generated)
+.ua/tmp/
+.ua/intermediate/
+.ua/.trash-*/

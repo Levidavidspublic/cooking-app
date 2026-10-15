@@ -1,0 +1,97 @@
+# Software factory — agent instructions
+<!-- owner: Amit · tool-agnostic and evergreen: tools are named only in factory/SLOTS.md · keep < 200 lines -->
+
+## What this repo is
+A product built by a ticket-driven software factory. Agents close one ticket at a time.
+The owner keeps four things: decisions, secrets, spend, and deploys to live.
+Every tool is a slot. `factory/SLOTS.md` says which tool fills each slot in this repo.
+
+## Read first, every session
+1. `factory/SLOTS.md`: tools per slot, commands, secret names, quiet days.
+2. Your ticket, all 11 fields.
+3. The doc sections your ticket's WHY points to. The six docs live in the doc store: PRD, TRD, App flow, UI brief, Backend schema, Roadmap.
+4. Run the code-map steps in STEPS before editing. Other tickets may have changed the code today.
+5. Take today's date from the system clock, never from the conversation or session start.
+
+If this repo has `HARD_RULES.md`, that file wins over a prompt that disagrees with it.
+If `factory/SLOTS.md` says `FACTORY_PAUSED=true`, do not start the build loop.
+
+## Commands
+Use the exact commands under **Commands** in `factory/SLOTS.md` (install, dev, test, lint, typecheck, build, e2e).
+If a command you need is missing there, report `blocked: missing command <name>`. Don't invent one.
+
+## Layout
+- `packages/backend` — schema and backend functions. Only a batch's backend ticket edits this.
+- `packages/core` — shared logic. No UI, no platform APIs.
+- `packages/ui` — shared components, built on the design system named in SLOTS.md.
+- `apps/<shell>` — thin shells (web, mobile, desktop, extension). Shells differ only in OS-access features.
+- `factory/` — SLOTS.md, the ticket template, run logs.
+- The six docs live in the doc store, not in this repo.
+- In this repo the backend folder is the one named in SLOTS.md.
+
+## The ticket (11 fields)
+| Field | Meaning |
+|---|---|
+| FOR | product, repo, and which lane runs it |
+| WHEN | order and dependencies (`after #n`) |
+| WHY | links to the doc sections this serves |
+| GOAL | one sentence: what exists after this ticket |
+| SCOPE | the files you may touch: at most 3 files + 1 test |
+| MUTATES | systems and data this changes (schema, env, routes) |
+| STEPS | ordered steps, starting with code-map steps |
+| DONE | a command and its expected output |
+| EVIDENCE | what to paste into the PR to prove DONE |
+| DO NOT | things that look helpful but are out of bounds |
+| REPORT | where to post the result, in the format below |
+
+A model named in a ticket is labelled either `code model` (the model that writes this code) or `runtime model` (the model the product calls). Never mix them up.
+
+## Rules
+1. One ticket = one folder, one branch, one PR. Branch name: `t/<issue-number>-<short-slug>`.
+2. Touch only files listed in SCOPE. If the work truly needs more, stop and report `blocked: scope overflow`. Don't split the ticket yourself.
+3. Change only the systems named in MUTATES. A change outside MUTATES fails the checks.
+4. Component tickets never edit `packages/backend`. Call the functions the batch's backend ticket defines. If one is missing, report `blocked: missing backend <function>`.
+5. You are done when the DONE command prints its expected output and all checks are green. Paste both into the PR as EVIDENCE.
+6. A mock or demo key never proves DONE when DONE names a real check.
+7. Anything you could not verify goes in the PR as `UNKNOWN: <what>`. Never fill a gap with a plausible guess.
+8. Build tickets never edit the six docs. If a doc is wrong, say so under `notes for ticket sync` in your report. Doc changes go through the spec line.
+9. Never edit, close or reassign another ticket.
+10. Use the code model the dispatcher assigned. Code is written only with mid-tier (billing-tier) models.
+11. Running headless (CI, cloud agent): don't ask questions. Report `blocked: question — <question>` and stop.
+
+## Never — and what enforces it
+These are explained here and enforced elsewhere. Each item names its enforcement, which is listed in SLOTS.md → Enforcement.
+- Deploy to live, or merge into the live branch. Enforced by: live-environment protection and branch protection.
+- Push straight to the default branch. Enforced by: branch protection (PRs only).
+- Read, print, log or commit a secret value. Enforced by: deny rules in each agent's settings, plus secret scanning.
+- Spend money the ticket doesn't authorise (paid APIs, paid services). Enforced by: scoped keys and spend caps on each provider.
+
+## Secrets
+Use names only. The list is in SLOTS.md → Secrets. The configurator sets them from the vault.
+If a secret is missing, report `blocked: missing secret <NAME>`. Never ask for a value, and never create a placeholder value.
+
+## Failing and stuck
+- When checks or review fail, fix it on the same branch. A ticket gets 3 attempts in total, including review-fix rounds.
+- This repo has no attempt counter. `scripts/factory/scope-guard.mjs` rule f (trailer `Factory-Merge-Fix: true`) changes which files that commit may touch. It does not drop a round from the 3.
+- After the 3rd failure: stop and report `stuck` with the last error. Don't make a 4th attempt, and don't widen scope to get it to pass.
+- Tickets whose WHEN depends on a stuck ticket wait. Everything else keeps running.
+- If today is a quiet day (SLOTS.md → Schedule), stuck work waits for the next active day.
+
+## Report format
+Post this on the ticket when you finish or stop:
+```
+status: done | stuck | blocked
+ticket: #<n>
+evidence: <DONE command> -> <output>
+changed: <files>
+unknowns: <list or none>
+notes for ticket sync: <follow-ups, doc errors, or none>
+```
+
+## Done means
+- The DONE command prints its expected output.
+- CI, browser test, speed limit and scope check are all green.
+- The review gate has passed: Bugbot has no unresolved findings (when Phase F is on).
+- The report is posted on the ticket.
+
+What happens after that is automatic: the PR merges into integration and integration deploys to preview. Deploying to live is the owner's job.

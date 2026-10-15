@@ -1,0 +1,39 @@
+[
+  { "name": "agent:ready", "color": "0E8A16", "description": "Gate 1 flipped — Cursor may pick this up" },
+  { "name": "agent:working", "color": "FBCA04", "description": "An executor is actively working" },
+  { "name": "agent:review", "color": "1D76DB", "description": "Draft PR open; waiting on Checker / human" },
+  { "name": "agent:blocked", "color": "B60205", "description": "Stop code applied; not ready" },
+  { "name": "agent:done", "color": "0E8A16", "description": "Human merged; ticket closed" },
+
+  { "name": "lane:code", "color": "5319E7", "description": "Code lane" },
+  { "name": "lane:marketing", "color": "F9D0C4", "description": "Marketing lane" },
+  { "name": "lane:support", "color": "C5DEF5", "description": "Support lane" },
+  { "name": "lane:research", "color": "D4C5F9", "description": "Research lane" },
+
+  { "name": "exec:cursor-cloud", "color": "0052CC", "description": "Cursor Cloud Agent" },
+  { "name": "exec:grokbot", "color": "000000", "description": "Grok Bot (config / hands)" },
+  { "name": "exec:astra", "color": "5319E7", "description": "Astra / Codex on the PC" },
+  { "name": "exec:squad", "color": "BFDADC", "description": "Squad (comment / triage)" },
+  { "name": "exec:human", "color": "E99695", "description": "Human (Amit)" },
+
+  { "name": "product:template", "color": "C2E0C6", "description": "monorepo-template" },
+  { "name": "product:mega-memory", "color": "BFD4F2", "description": "Mega Memory (parked here until repo decision)" },
+  { "name": "product:tempo", "color": "FEF2C0", "description": "Tempo Flow" },
+  { "name": "product:omniagent-spice", "color": "F9D0C4", "description": "OmniAgent Spice" },
+  { "name": "product:omniagent-work", "color": "D4C5F9", "description": "OmniAgent Work" },
+  { "name": "product:agentwright", "color": "C5DEF5", "description": "Agentwright" },
+
+  { "name": "stage:0", "color": "EDEDED", "description": "Stage 0 — decisions / legal" },
+  { "name": "stage:p-1", "color": "D4C5F9", "description": "Phase P-1 (this fortnight)" },
+  { "name": "stage:p0", "color": "C2E0C6", "description": "Phase P0" },
+
+  { "name": "version:v0", "color": "EDEDED", "description": "V0 skeleton" },
+  { "name": "version:v0.1", "color": "C2E0C6", "description": "V0.1 grafted" },
+  { "name": "version:v1", "color": "0E8A16", "description": "V1 ship" },
+
+  { "name": "backend-change", "color": "B60205", "description": "Touches packages/backend or Convex schema" },
+  { "name": "template-change", "color": "0052CC", "description": "Changes the factory template itself" },
+  { "name": "needs-amit", "color": "D93F0B", "description": "Product / legal / key decision; do not infer" },
+  { "name": "release", "color": "0E8A16", "description": "Release train" },
+  { "name": "stop-test", "color": "B60205", "description": "Stop ticket — must stay red (BLOCKED_VERIFICATION)" }
+]

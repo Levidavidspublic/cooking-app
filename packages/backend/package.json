@@ -1,0 +1,26 @@
+{
+  "name": "@app/backend",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "convex dev",
+    "deploy": "convex deploy",
+    "codegen": "convex codegen",
+    "typecheck": "tsc --noEmit -p convex/tsconfig.json",
+    "lint": "echo \"No lint configured for @app/backend yet\""
+  },
+  "dependencies": {
+    "@convex-dev/auth": "^0.0.90",
+    "convex": "^1.31.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "exports": {
+    "./convex/_generated/api": "./convex/_generated/api.js",
+    "./convex/_generated/api.js": "./convex/_generated/api.js",
+    "./convex/_generated/dataModel": "./convex/_generated/dataModel.d.ts",
+    "./convex/_generated/server": "./convex/_generated/server.js"
+  }
+}

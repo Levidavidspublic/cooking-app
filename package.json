@@ -1,0 +1,30 @@
+{
+  "name": "monorepo-template",
+  "private": true,
+  "packageManager": "pnpm@10.26.2",
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "dev": "turbo run dev",
+    "dev:web": "pnpm --filter @app/web dev",
+    "dev:mobile": "pnpm --filter @app/mobile dev",
+    "dev:landing": "pnpm --filter @app/landing dev",
+    "dev:backend": "pnpm --filter @app/backend dev",
+    "build": "turbo run build",
+    "build:web": "pnpm --filter @app/web build",
+    "build:landing": "pnpm --filter @app/landing build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "format": "turbo run format",
+    "vercel:web": "cd apps/web && vercel",
+    "vercel:landing": "cd apps/landing && vercel",
+    "expo:start": "pnpm --filter @app/mobile dev"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.4",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": "^22.18.0 || >=24.0.0",
+    "pnpm": ">=10.26.2"
+  }
+}

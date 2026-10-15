@@ -1,0 +1,57 @@
+# .github/workflows/claude.yml
+# Interactive lane: a repo owner/member/collaborator writes "@claude ..." on an issue or PR.
+# Based on anthropics/claude-code-action@v1 examples/claude.yml.
+# Auth: CLAUDE_CODE_OAUTH_TOKEN (GitHub Actions secret, set by Amit / from 1Password "dev"; never printed).
+#
+# Confirm gate: this job only starts when a human with write-level standing on the repo
+# (author_association OWNER, MEMBER or COLLABORATOR) explicitly writes "@claude".
+# Bot senders (Copilot, Greptile, Cursor, Dependabot ...) never start it, and there is no
+# automatic trigger (no "assigned", no push/schedule). That human-only, server-checked
+# trigger is the confirmation step before Claude runs with write permissions.
+name: Claude Code
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  issues:
+    types: [opened]
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  claude:
+    if: |
+      github.event.sender.type != 'Bot' && (
+        (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude') &&
+          contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association)) ||
+        (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude') &&
+          contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association)) ||
+        (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude') &&
+          contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.review.author_association)) ||
+        (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')) &&
+          contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.issue.author_association))
+      )
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      actions: read # Required for Claude to read CI results on PRs
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 1
+          # Work starts from integration (template default branch is master; agents branch from integration).
+          ref: integration
+
+      - name: Run Claude Code
+        id: claude
+        uses: anthropics/claude-code-action@97c53473391bff1901034d4b454b5bac7ab7a029 # v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          claude_args: "--model claude-sonnet-5 --max-turns 25"

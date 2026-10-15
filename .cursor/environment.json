@@ -1,0 +1,4 @@
+{
+  "name": "monorepo-template",
+  "install": "if ! command -v pnpm >/dev/null 2>&1; then corepack enable pnpm 2>/dev/null || sudo corepack enable pnpm 2>/dev/null || npm install -g pnpm@10.26.2 || sudo npm install -g pnpm@10.26.2; fi; pnpm install --frozen-lockfile"
+}

@@ -1,0 +1,151 @@
+name: CI
+
+# Phase 03: real install / typecheck / lint / unit tests / build (pnpm@10.26.2 from packageManager),
+# summed up in the required check `ci`. Nothing here is allowed to be skipped or soft-failed.
+#
+# The six "legacy" jobs at the bottom are the Week-0 stubs under their old names. They stay only
+# because the integration ruleset matched on those names until Phase 03 switched it to the five
+# required checks (ci, e2e-preview, secret-scan, config-guard, scope-guard). They are NOT part of
+# `ci` and can be deleted by a later config PR.
+
+on:
+  pull_request:
+    branches: [master, integration, main]
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci-typecheck:
+    name: ci / typecheck
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0 (version from packageManager)
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Typecheck
+        run: pnpm typecheck
+
+  ci-lint:
+    name: ci / lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0 (version from packageManager)
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Lint
+        run: pnpm lint
+
+  ci-test:
+    name: ci / test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0 (version from packageManager)
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      # No workspace has a `test` script yet (Phase 03): this runs every `test` script that exists
+      # and passes when there are none. A new test script is enforced here automatically.
+      - name: Unit tests (every workspace test script)
+        run: pnpm -r --if-present test
+
+  ci-build:
+    name: ci / build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0 (version from packageManager)
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build
+        env:
+          # Build-time placeholder only: CI never talks to a real Convex deployment.
+          NEXT_PUBLIC_CONVEX_URL: https://example.convex.cloud
+        run: pnpm build
+
+  # Required check `ci`: passes only when install, typecheck, lint, unit tests and build all passed.
+  ci:
+    name: ci
+    if: always()
+    needs: [ci-typecheck, ci-lint, ci-test, ci-build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: All CI jobs passed?
+        env:
+          NEEDS: ${{ toJSON(needs) }}
+        run: |
+          echo "$NEEDS" | jq -r 'to_entries[] | "\(.key): \(.value.result)"'
+          echo "$NEEDS" | jq -e 'all(.[]; .result == "success")' > /dev/null
+
+  # ---- legacy Week-0 stub names (not part of `ci`; see the header) ----
+  typecheck:
+    name: Typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Legacy stub name, not a real check. The real check is ci (and e2e-preview for browser tests)."
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Legacy stub name, not a real check. The real check is ci (and e2e-preview for browser tests)."
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Legacy stub name, not a real check. The real check is ci (and e2e-preview for browser tests)."
+
+  scan:
+    name: Scans (forbidden-tech, ram-only-audit, design-tokens)
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Legacy stub name, not a real check. The real check is ci (and e2e-preview for browser tests)."
+
+  notices:
+    name: Third-party notices (TF-OSS-00)
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Legacy stub name, not a real check. The real check is ci (and e2e-preview for browser tests)."
+
+  e2e:
+    name: E2E (Playwright)
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Legacy stub name, not a real check. The real check is ci (and e2e-preview for browser tests)."

@@ -1,0 +1,11 @@
+{
+  "name": "e2e-preview",
+  "private": true,
+  "description": "Playwright smoke tests for the e2e-preview check (runs against this PR's Vercel preview). Not a pnpm workspace package: CI installs it with npm.",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
+  }
+}

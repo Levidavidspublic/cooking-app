@@ -1,0 +1,16 @@
+node_modules/
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+/ios
+/android
+.DS_Store
+*.pem
+.metro-health-check*
+.git/commit-log.txt
+.mobile-template-logs/
