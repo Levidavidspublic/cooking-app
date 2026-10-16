@@ -122,3 +122,8 @@ Expo and Convex CLIs under Bun: verify from vendor docs before the switch. UNKNO
 
 - Repo `integration` 3 Oct: `package.json`, `.github/workflows/ci.yml`, `claude.yml`, `config-guard.yml`, `AGENTS.md`, `HARD_RULES.md`, `PROVIDERS.md`, `docs/TEMPLATE_STATE.md`, `apps/*/.env.example`, `packages/backend/convex/*`.
 - Basic Memory notes (see `01-PRD.md`). `plan-v4/PLAN-FINAL.md`.
+
+
+## Environment & deploy
+
+Every variable, where it is set, and its 1Password item are in [docs/ops/ENV-MANIFEST.md](ops/ENV-MANIFEST.md). Preview deploys use the Convex preview deploy key; production deploys happen only when an agent's prompt says "DEPLOY TO PRODUCTION".
