@@ -95,3 +95,5 @@ notes for ticket sync: <follow-ups, doc errors, or none>
 - The report is posted on the ticket.
 
 What happens after that is automatic: the PR merges into integration and integration deploys to preview. Deploying to live is the owner's job.
+
+Global rules: C:\Users\User\agent-system\SYSTEMS.md (v1). This project's rules win inside this project.
