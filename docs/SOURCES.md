@@ -6,9 +6,9 @@ Updated 2026-10-21. Prior work is reused, not restarted. This is an evidence reg
 
 - 118 prior registered completed source identities (S1-S118) retained. The prior MASTER text saying116 was stale; the actual register and source folder contain118.
 - Two additional shared container identities completed by exact nonblank-line reuse: container05 (9,940 lines) and container06 (9,383 lines). Their verified source bodies were already fully read in the Rehab lane. Zero novel residual lines, so no fresh-reading credit is claimed.
-- Total bounded identities represented:120. This counts identities, not distinct texts; full-passage reuse and aliases are not novel reads.
-- Core/full September packs already have prior cross-product receipts (S117/S118); exact aliases are not counted again. Current default rules/manifests and the live issue snapshot were inspected for this v2 reconciliation, separately from the118 historical identities.
-- Broader mixed containers07-20 (14 containers), unprovided original chats/attachments and related discovery pointers remain incomplete/UNKNOWN. Source redactions are excluded content, not full access to the removed text. CHAT CHECK PENDING remains.
+- Total bounded identities represented:122 (118 prior, two shared aliases and two newly read full project records). This counts identities, not distinct texts; full-passage reuse and aliases are not novel reads.
+- Core/full September packs already have prior cross-product receipts (S116-S118); exact aliases are not counted again. Current default rules/manifests and the live issue snapshot were inspected for this v2 reconciliation, separately from the118 historical identities.
+- The prior containers07-20 are now explicitly reconciled as index/navigation sources or bounded mixed archives. They are not claimed fully read. The main archive has 715 structurally mapped records, with the scoped results below. Protected bodies, omitted original chats/attachments and content outside the bounded scope remain UNKNOWN. Source redactions are excluded content, not full access to the removed text.
 
 ## New shared-source completion
 
@@ -21,7 +21,29 @@ Machine receipts: this session `work/cooking/shared-reuse.json` and `work/cookin
 
 ## Current repository evidence
 
-Default integration at8e553178941166337cb21fac1eec16aa167e5d31. Read AGENTS, HARD_RULES, SLOTS and package manifests from the read-only checkout. Open issue2 body reviewed; PRs1/3/4/5 remain separate existing changes. Live snapshots are under this session `work/live/cooking-app`. Cost status is the parent's live audit; publication skipped, not claimed successful. Issue creation remains the publisher's responsibility and is confirmed only through its receipts.
+Default integration at8e553178941166337cb21fac1eec16aa167e5d31. Read AGENTS, HARD_RULES, SLOTS and package manifests from the read-only checkout. Open issue2 body reviewed; PRs1/3/4/5 remain separate existing changes. Live snapshots are under this session `work/live/cooking-app`. Cost status is the parent's live audit; publication skipped, not claimed successful. Parent publication receipts confirm 52 blocked implementation issues #6-57, proposals #58 and docs tracking #59. Existing issue #2 and other open PRs were not edited by this worker.
+
+## Final bounded reconciliation — 2026-10-21
+
+The source map distinguishes completed reading from structural routing. It does not claim full reading of mixed archives. Legacy sanitized-cache flags are not safety evidence. A conservative whole-source screen quarantines any protected conversation/document before further display; false positives are possible, and protected content stays UNKNOWN rather than being inferred.
+
+| Source | Available coverage | Effect |
+|---|---|---|
+| V2-S121 — Chef KetoBot project, 2025-06-22 | Complete available record, lines 1-123; expands the S110 summary card; whole-source screen passed | Personal recipe-assistant workflow; no Cooking App adoption established |
+| V2-S122 — MealPrep OS project, 2026-01-06 | Complete available record, lines 1-1836; four embedded documents; expands the S109 summary card; whole-source screen passed | Modular meal preparation concept; no new app requirement or ticket inferred |
+| Recipe conversion app archive record 712 | All 155 nonblank lines match prior hash-verified source bodies; 693 total lines, zero residual | Exact reuse, no fresh-read credit |
+| Single-recipe archive records 27 and 109 | Title and first 40 lines inspected after whole-source screening | Contextual recipe-only exclusions; full body not claimed read |
+| 19 other routed archive candidates | Whole-record conservative screen prevents further display | PROTECTED_SOURCE_UNKNOWN; no new full-read claim |
+| Remaining 691 of 715 archive records | Structural title/metadata routing only | Not selected as designated Cooking bodies; no blanket claim of irrelevance or full reading |
+| 30 shared containers | 26 protected; four structurally assigned to other projects or a journal | No new whole-container reading claim |
+
+Four previously represented product/planning records (218, 220, 230, 691) have zero novel permitted nonblank lines against the verified prior source register. Their whole records now remain protected under the strict guard. Earlier receipts are retained at their stated boundaries; neither this comparison nor earlier redaction establishes access to protected content.
+
+The 14 earlier pending slots are accounted for: containers07-09 are source/chat indexes; containers10-19 are mixed or reduced historical archives with retained excerpt receipts and incomplete original context; container20 is routed through the bounded 715-record map. Original attachments or conversations not actually present remain UNKNOWN. Navigation references are not evidence that the referenced body was read.
+
+Local receipts in this session: `work/cooking/final-source-dispositions.json` (all 715 record dispositions, 30 shared containers and 14 prior slots), `work/cooking/bounded-full-read-receipt.json` (two full records), `work/cooking/whole-record-preflight.json` (names/counts/line numbers only), and `work/cooking/bounded-reuse.json` (exact prior-line mapping; no residual body text). Shared scope evidence comes from the Agentwright and Form disposition ledgers, Tempo structural map and OmniAgent lineage receipt. No shared receipt is silently converted into new Cooking reading credit.
+
+This pass adds two record identities, not four extra identities for embedded documents. The represented count of 122 includes aliases and overlapping summary/full-record evidence; it is not 122 distinct novel texts. No new product ticket is warranted by the two newly completed records.
 
 ## Prior completed source register
 

@@ -8,6 +8,12 @@ A cooking assistant for home cooks with dietary, sensory, ingredient or equipmen
 
 Personal tester identities and health histories are not product requirements. No medical, allergy-safe, laboratory-accuracy or kosher-certification claim is established. This document describes proposed product contracts; it does not advise on a person's diet or treatment. Stage labels denote proposed scope, not shipped status. Later also parks unresolved evidence; it is not an adoption decision.
 
+## Additional source boundary — 2026-10-21
+
+Two historical assistant projects were read in full from the available export: Chef KetoBot (2025-06-22, V2-S121) and MealPrep OS (2026-01-06, V2-S122, including four embedded documents). The first describes a personal recipe-assistant workflow; the second describes modular meal preparation and a reusable meal library. They expand the evidence behind the earlier summary cards S110 and S109 respectively.
+
+No source explicitly adopts either project as the Cooking App specification. Their personal constraints, household plans and provider-specific prompts are not new product requirements. Meal preparation already exists in the retained roadmap; no new ticket or gate change follows from these records. Any proposed transfer is EXTRAPOLATED and needs an explicit product decision. Protected records and missing original attachments remain UNKNOWN.
+
 ## Requirements and evidence
 
 All proposed implementation slices are EXTRAPOLATED decomposition of the cited product sources. Source dates are not adoption dates. A completed document does not establish completed software.

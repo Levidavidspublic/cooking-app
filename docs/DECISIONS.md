@@ -6,6 +6,8 @@ The date column distinguishes an actual dated owner instruction from the date a 
 
 | Date | Decision/status | Supersedes | Evidence |
 |---|---|---|---|
+| 2026-10-21 | Bounded archive reconciliation adds full available Chef KetoBot and MealPrep OS records (including four embedded documents), with no automatic Cooking scope adoption; 122 represented identities total | Prior blanket container-pending wording is refined by explicit read/reuse/scope/protected dispositions; whole mixed archives still UNKNOWN | V2-S121/V2-S122; final-source-dispositions.json |
+| 2026-10-21 | Quarantine entire protected conversations/documents before further display; prior sanitized flags do not establish safety or complete source access | Any assumption that line filtering or a legacy sanitized marker authorizes reading the rest of a protected source | Current hard rule and whole-source safety guard; protected content UNKNOWN |
 | 2026-10-21 | Owner authorizes this v2 local packet, new GitHub issues and proposed existing-issue edits/closures; creation is not dispatch | Prior run's wait-for-merge-and-apply gate for creating these NEW issues only | Current request |
 | 2026-10-21 | Preserve all 52 prior feature slices as blocked backlog; do not close or edit #2 | Prior draft instruction to close #2 during apply; now proposal only | Current request plus prior ticket plan |
 | 2026-10-21 | Skip push/draft PR under cost exception while auto-preview billing exposure remains unresolved | Earlier intent to publish in this run only where safe | Current request; parent's live cost inspection |
