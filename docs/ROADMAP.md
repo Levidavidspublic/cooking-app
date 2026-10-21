@@ -1,105 +1,69 @@
-# monorepo-template — 06 Roadmap
+# Cooking App roadmap
 
-> **TL;DR**
-> - Phase 0: factory gates (org move, docs + wikis, tickets with Graphify). Automations stay OFF until done.
-> - Phase 1: switch to Bun (config lane).
-> - Phase 2: real CI + secret scan.
-> - Phase 3: magic link + legal pages + every key slot → "deploys with 1–2 adjustments".
-> - Phase 4: one-day test — a new app reaches a live preview in one day.
-> - Phase 5: Bolt graft with zero backend edits.
+Updated 2026-10-21. Evidence-bounded documentation proposal; not a release or default-branch adoption.
 
-Version: 3 Oct 2026. A roadmap of PHASES. Ticket order is a separate job. Marks: see `01-PRD.md`.
-Old roadmap: `ROADMAP.md` at the repo root (P-1, P-2). This file folds it in. P-1 → Phases 2 + 3. P-2 → Phase 5.
+## Order and gates
 
-## Phase order
+All dates below are source dates. Delivery dates are UNKNOWN. New issues may exist while the factory remains paused.
 
-```mermaid
-flowchart LR
-  P0[0 Factory gates] --> P1[1 Bun switch]
-  P1 --> P2[2 Real CI]
-  P2 --> P3[3 Ready-to-deploy kit]
-  P3 --> P4[4 One-day test]
-  P4 --> P5[5 Bolt graft]
-  P5 --> L[Later]
-```
+| Stage | Outcome | Exit gate | Tickets |
+|---|---|---|---|
+| Decision/foundation | Accepted product baseline, exact contracts and registered core/test command | Owner decisions; approved package/config lane; factory restart | CA-01 to CA-03; DECISIONS conflicts |
+| Kitchen | Ask, private Cookbook, immutable cook-log improvement | CP1-CP6 with actual preview, two-user and culinary evidence | CA-04 to CA-29 as dependencies require |
+| MVP launch preparation | Expert term set/gold cases, Android, privacy and deletion, controlled beta | Accepted policies; expert grades; actual device and auth proof | CA-24 to CA-32 |
+| MVP commercial gate | Approved seller/price/access contract and enforced entitlements | Platform/provider acceptance and capped usage; owner launch decision | CA-33 to CA-36 |
+| Gen 1 knowledge | Four provenance-bearing read-only layers and cited risk flags | Licensed sources, reviewed taxonomy, external read-only contract test | CA-37 to CA-42 |
+| Gen 1 imports/planning | Recipe URL/photo import, weekly prep grouping and shopping list | Rights/network/image policy; explicit review and validated units | CA-43 to CA-46 |
+| Gen 1 professional/platform | Simplification, technique-aware scaling, costing, exact nutrition, optional cook mode, iOS | Expert fixtures and relevant native/device evidence | CA-47 to CA-52 |
+| Later | BYOC and possible Gen 2 | No adopted scope or provider approval | No implementation ticket |
 
-Phases 1 and 2 could run together if one config-lane PR does both (EXTRAPOLATED).
+Dependencies in TICKETS are authoritative for execution order; numeric order alone is insufficient. A prerequisite needing a policy or service decision stays blocked. No automatic invitations, purchases, live deployment or factory dispatch follows from creating this backlog.
 
-## Phase 0 — Factory gates (now, A-Oct)
+### MVP acceptance
 
-**Goal.** The factory can work on the template safely.
-**Exit check.**
-1. Repo moved to org Levidavidspublic. CI runs. Vercel preview from `integration`. Rulesets + required checks intact.
-2. `docs/01`–`06` and the GitHub wiki hold this set.
-3. Open tickets rewritten to the 11-field standard (3 files + 1 test, runnable DONE, deps listed) with Graphify context.
-**Note.** The open setup-secrets PR is Amit's to review. Do not touch it.
+- What: After the three-feature kitchen: expert-reviewed bilingual allergen dictionary, Android, legal/privacy/deletion, invite beta and expert-graded gold set before paid launch. Ten testers and30graded recipes/average4/zero unsafe answers are proposed thresholds, not achieved outcomes.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: UNKNOWN for this individual feature; the parent product rationale is in the linked claim.
+- How: Record exact version, fixture, real-service and human culinary proof separately; current dates are UNKNOWN.
+- Status: MVP
+- From: S37, S48, S47
 
-## Phase 1 — Bun switch (config lane)
+### Gen1 four knowledge layers
 
-**Goal.** Bun is the only package manager. (AMIT 3 Oct)
-**Exit check.**
-1. `bun.lock` is the only lockfile. `pnpm-lock.yaml` and `pnpm-workspace.yaml` gone.
-2. `bun install --frozen-lockfile` passes in CI.
-3. `AGENTS.md`, `HARD_RULES.md`, `README.md` and the GitHub repo description say Bun.
-4. `bun run dev:web` and the Expo dev server start (command names) (EXTRAPOLATED).
-**Blockers.** `package.json` scripts and `.github/**` are guarded. Needs Amit's `config-lane` label. Expo + Convex CLI behaviour under Bun: verify first (UNKNOWN).
-**First tickets.** Lockfile + workspaces · CI install steps · docs and description.
+- What: Read-only chemistry, observed failures, availability including kosher status, and conventional technique layers; cite the specific layer behind each risk flag.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: UNKNOWN for this individual feature; the parent product rationale is in the linked claim.
+- How: Versioned reference records, provenance and an externally testable read-only connector; exact taxonomy/source rights and consumer contract need acceptance.
+- Status: Gen 1
+- From: S44, S37, S16
 
-## Phase 2 — Real CI
+### Gen1 imports and weekly planning
 
-**Goal.** The six locked job names run real commands. A secret scan exists. (A-Oct goal E2)
-**Exit check.** Typecheck, Lint, Test, Scans, Third-party notices and E2E (Playwright smoke) all run real work and fail on errors. A gitleaks secret scan job runs. A build job runs. A failing PR is blocked; a passing PR merges (proof test).
-**Rules.** Job names never change. Never weaken a check. (A-Oct)
-**First tickets.** Typecheck + lint + build · Playwright smoke · secret scan.
+- What: URL/photo recipe import, weekly plans and combined shopping lists; grouping by cuisine, preparation and overlapping ingredients follows historical user intent. Recipe-photo import does not revive rejected pantry vision.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: UNKNOWN for this individual feature; the parent product rationale is in the linked claim.
+- How: UNKNOWN beyond the linked draft contract.
+- Status: Gen 1
+- From: S37
 
-## Phase 3 — Ready-to-deploy kit
+### Gen1 professional and platform features
 
-**Goal.** A new app deploys with 1–2 adjustments. (AMIT 3 Oct)
-**Exit check.**
-1. Magic link works on first deploy (Resend + Convex Auth). (A-Oct goal D2)
-2. Every key slot is listed in `.env.example` files and `docs/ENV.md`, names only. (A-Oct goal D1)
-3. Setup script pulls keys from 1Password; nothing printed or written. (A-Oct goal D3)
-4. Privacy, Terms, Cookies pages: English + Hebrew, public (no sign-in), marked "draft for a lawyer". (from the Tempo/OmniAgent decision) (EXTRAPOLATED)
-5. Owner checks fixed in `users.ts` (see `05-BACKEND-SCHEMA.md` §3).
-6. Factory pieces: CI, review config, `claude.yml`, Cursor environment, issue template, labels, `AGENTS.md`. (A-Oct goal D4)
-7. How-to wiki pages: "Start a new app", "Set keys", "Deploy preview", "Release live" (titles) (EXTRAPOLATED).
+- What: Technique-aware scaling/batching/costing, simplification, exact nutrition, optional cook mode and iOS. Tenfold scaling requires technique-risk review rather than blind multiplication.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: UNKNOWN for this individual feature; the parent product rationale is in the linked claim.
+- How: UNKNOWN beyond the linked draft contract.
+- Status: Gen 1
+- From: S37
 
-## Phase 4 — One-day test
+### Later BYOC and Gen2
 
-**Goal.** Prove the promise.
-**Exit check.** From "Use this template" to a live preview in one working day. Time recorded. (A-Oct goal D5) Each manual step listed, then turned into a script or a doc.
+- What: Bring-your-own ChatGPT is parked pending approval. No accepted bounded Gen2 roadmap was found; any allocation of unresolved features to Later is EXTRAPOLATED.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: UNKNOWN for this individual feature; the parent product rationale is in the linked claim.
+- How: UNKNOWN until a dated owner decision and supported provider terms are established.
+- Status: Later
+- From: S37
 
-## Phase 5 — Bolt graft
+## What success does not yet mean
 
-**Goal.** An app made in Bolt drops into `apps/*` with zero backend edits. (REPO `ROADMAP.md` P-2; AMIT 3 Oct "usable in Bolt")
-**Exit check.** One Bolt export merged; `packages/backend` unchanged; CI green.
-**Blockers.** Exact Bolt flow and Bun support in Bolt: UNKNOWN.
-
-## Later (vague on purpose, REPO `ROADMAP.md`)
-
-`packages/core`, `packages/ui`, `packages/config` slots · extension shell · Tauri desktop · image/video providers if Amit rules them in · multi-app layout examples (OmniAgent style).
-
-## Cadence (A-Oct)
-
-| Rule | Detail |
-|---|---|
-| Building | Autonomous BUILD 7 days a week once automations are on ("Shabbat light") |
-| Fri–Sat | No configuration, no patching. Breakage waits for Sunday. |
-| Merge | Into `integration` only: CI green + review gate (Greptile 4/5+, no open P1; Bugbot for now) + no conflicts + inside MUTATES |
-| Live | Amit only. He merges `integration` → `master`. |
-| Broken ticket | Fails more than 3 times → stops. Dependents pause. Others continue. |
-| Lanes | Cursor: front end. Claude Code: backend, sign-in, tests. Codex: CI, docs, refactors (GPT-5.6 Terra or GPT-6 Luna). |
-| Never | Any "Sol" model, Fable, Astra, Opus, Soul for code. Weakening a check. |
-
-## Open questions
-
-1. Bun switch and real CI: one config-lane PR or two?
-2. Should Phase 3 include the sign-up cap and approval flow?
-3. Who runs the one-day test, and on which app idea?
-4. Bolt: which direction (import or export)?
-
-## Sources
-
-- Repo `integration` 3 Oct: `ROADMAP.md`, `README.md`, `.github/workflows/*`, `package.json`, `docs/TEMPLATE_STATE.md`, `docs/wiki/Tickets.md` (listed).
-- `plan-v4/PLAN-FINAL.md` steps 1–7.
-- Basic Memory: "Weekend factory plan 2026-10-02", "Weekend goals 2026-10-02" (section D, E), "Next week — factory decisions and research 2026-10-03", "Factory merge and deploy policy", "Factory Decisions — 2026-09-18".
+The draft thresholds of thirty graded recipes, average grade four and zero unsafe answers are proposed targets. Ten beta testers is explicitly EXTRAPOLATED. None is an observed result. Expert grading, terms, pricing, accepted product policy and implementation date remain UNKNOWN.

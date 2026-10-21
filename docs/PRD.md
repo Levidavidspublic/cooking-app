@@ -1,100 +1,281 @@
-# monorepo-template — 01 PRD (product requirements)
+# Cooking App PRD
 
-> **TL;DR**
-> - This repo is a TEMPLATE, not an app. It starts new full-stack web + mobile prototypes.
-> - Stack: Convex backend · Next.js web on Vercel · Expo mobile · **Bun** as package manager (never pnpm).
-> - It ships CI checks, how-to docs, a wiki, privacy and legal pages. A new app should deploy with 1–2 adjustments.
-> - Goal: a new app reaches a live preview in ONE day.
-> - Known mismatch: the repo still uses pnpm (code, docs, description). Not fixed here.
+Updated 2026-10-21. Evidence-bounded documentation proposal; not a release or default-branch adoption.
 
-Version: 3 Oct 2026. First version of this document. The template had no product docs before.
+## Product and users
 
-Marks used in all six docs:
+A cooking assistant for home cooks with dietary, sensory, ingredient or equipment constraints, with later professional development/scaling use. It explains ingredient functions and compromises and preserves recipe versions so actual cooking feedback can inform a later version. Keto is a proposed marketing entry point, not the whole product. S94, S95, S48, S36.
 
-| Mark | Meaning |
-|---|---|
-| (AMIT 3 Oct) | Amit's description of the template, passed in the 3 Oct task brief |
-| (A-Oct) | Amit's decisions, 1–3 Oct (Basic Memory notes) |
-| (REPO 3 Oct) | Read from this repo's `integration` branch on 3 Oct |
-| (EXTRAPOLATED) | My fill or my reading. Check it. |
-| UNKNOWN | No source says. Needs Amit. |
+Personal tester identities and health histories are not product requirements. No medical, allergy-safe, laboratory-accuracy or kosher-certification claim is established. This document describes proposed product contracts; it does not advise on a person's diet or treatment. Stage labels denote proposed scope, not shipped status. Later also parks unresolved evidence; it is not an adoption decision.
 
-## 1. What it is
+## Requirements and evidence
 
-1. A full-stack web + mobile prototyping template. (AMIT 3 Oct)
-2. One shared Convex backend. Web on Vercel. Mobile on Expo. (AMIT 3 Oct; REPO 3 Oct)
-3. Bun is the package manager. Never pnpm. (AMIT 3 Oct)
-4. It ships factory pieces: CI checks, wikis and how-tos, privacy policy and legal pages. (AMIT 3 Oct)
-5. An app built from it deploys with 1–2 adjustments. (AMIT 3 Oct)
-6. It is usable in Bolt. (AMIT 3 Oct) The roadmap test: a Bolt export lands with zero backend edits. (REPO `ROADMAP.md`)
-7. It holds the factory conventions that product repos copy: tickets, CI check names, labels, docs. (REPO `README.md`)
+All proposed implementation slices are EXTRAPOLATED decomposition of the cited product sources. Source dates are not adoption dates. A completed document does not establish completed software.
 
-## 2. Who uses it
+### C02 — Original recipe-assistance ambition
 
-| Who | Need |
-|---|---|
-| Amit | Start a new product fast. Reach a live preview in one day. (A-Oct) |
-| Factory agents (Cursor, Claude Code, Codex) | One known layout. One set of rules. No guessing. |
-| Product repos (`tempo-rhythm`, `omniagent`, `agentwright`) | Copy conventions from here. Never invent a second queue. (REPO `README.md`) |
-| Bolt | Generate or import an app that fits this layout (exact Bolt flow UNKNOWN) (EXTRAPOLATED) |
+- What: User requested text/URL/video recipe conversion and generation, diet/allergy/preference/equipment/budget/texture adaptations, simplification, restaurant recreation and coordinated meal preparation; later accepted a broad end-product inventory. Evidence: HISTORICAL_DIRECT_USER_SCOPE; CURRENT ADOPTION UNKNOWN.
+- When: decided UNKNOWN (first seen 2025-08-12); source chronology: 2025-08-12 to 2025-08-22
+- Why: Fit real cooks and kitchens while explaining food-science substitutions and preserving flavor and texture.
+- How: Early two-page converter expanded to full account/admin/pricing flows. One feature/component at a time was requested. Later photo/pantry acceptance is superseded or narrowed by March correction and subsequent phase scopes; assistant prices, schemas and commercial extensions remain proposals.
+- Status: MVP
+- From: S101, S99
 
-## 3. Must have
+### C03 — Standalone product and batch grouping
 
-| # | Requirement | State today (REPO 3 Oct) |
+- What: Cooking is separate from Tempo Flow and Consilium. User asks dietary conversion, shopping lists and grouping selected recipes by cuisine, preparation and overlapping ingredients; explicitly rejects the pantry-photo/computer-vision interpretation. Evidence: HISTORICAL_DIRECT_USER_DECISION.
+- When: decided 2026-03-20 (first seen 2026-03-20); source chronology: 2026-03-20
+- Why: Reduce repeated work and make practical meal preparation easier.
+- How: Home/semi-professional/professional audiences are user intent; detailed tier allocations and shared backend are assistant suggestions. Reliable dietary knowledge and expert review are prerequisites, not accomplished results.
+- Status: MVP
+- From: S94, S95
+
+### C06 — October product definition
+
+- What: Recipe Alchemist is constraint-based recipe engineering, with keto as a marketing hook rather than its entire scope. Six Ask intents are convert, copycat, substitute, troubleshoot, develop and plan tonight for one to three dishes. Evidence: DRAFT_SPEC; EXTRAPOLATED CHOICES EXPLICIT.
+- When: decided UNKNOWN (first seen 2026-10-15); source chronology: 2026-10-15
+- Why: Simple swaps break ingredient functions and texture; cooks need explanations, risk warnings and a learning loop.
+- How: One brief plus household constraints and rough/copycat fidelity returns RecipeCard, AnswerCard or refusal. Launch proposal is bilingual web/Android, invitation beta then free/paid. Product name/repository rename remains unapproved; actual prepared repository is cooking-app.
+- Status: MVP
+- From: S48, S36
+
+### C16 — Related names and software cookbooks
+
+- What: RecipeAI, HealthGourmet, Chef KetoBot and MealPrep OS are historical related concepts; exact aliases/adoption require evidence. Software prompt cookbooks and Consilium project prompts are not Cooking-app requirements. Evidence: IDENTITY_UNKNOWN_OR_EXCLUDED.
+- When: decided UNKNOWN (first seen UNKNOWN); source chronology: 2025-06 to 2026-10 secondary summaries
+- Why: Avoid inventing product identity from domain words or AI summaries.
+- How: PDF and cards preserve cross-product evidence separately. Saved memory offers a secondary Concilium-to-Omni/Agentwright lineage candidate but conflicts with another summary; it does not authorize collapsing identities.
+- Status: Later
+- From: S91, S111, S112
+
+## Product capabilities
+
+### C07 — Three-feature kitchen and immutable improvement loop
+
+- What: Kitchen has Ask, private Cookbook and cook-log-driven improvement. Save creates v1; conversion/improvement creates a new immutable version with an explanation; original logs stay attached to the original version. Evidence: ACCEPTANCE_SPEC; NO EXECUTED PROOF.
+- When: decided UNKNOWN (first seen 2026-10-15); source chronology: 2026-10-15
+- Why: Preserve reproducible recipes and make real cooking feedback useful.
+- How: Approximately six-hour preview scope. CP1/CP2/CP5 cover useful recipe, troubleshooting and allergen behavior; CP3 version/log explanation; CP4 Hebrew/RTL; CP6 second-user isolation including direct-URL denial. Required unit/preview/human checks were not run here.
+- Status: MVP
+- From: S36
+
+### C08 — Household constraints and deterministic authority
+
+- What: Households/eaters/kitchens supply allergies including free text, diets, kosher choices, sensory preferences, age category, professional parent-entered targets, equipment, unavailable ingredients and region. Model generates content; code owns allergen gates, macros and access. Evidence: DRAFT_TECHNICAL_CONTRACT.
+- When: decided UNKNOWN (first seen 2026-10-15); source chronology: 2026-10-15
+- Why: Treat user constraints as enforceable inputs rather than optional model suggestions.
+- How: Shared pure core classifies/builds prompt/parses/gates/checks diets/calculates macros. Quote pasted recipes as data. Parse retry once; allergen violation regenerates once, then refuses. Proposed ingredient-only gate is insufficient per review.
+- Status: MVP
+- From: S44, S47, S46
+
+### C09 — Safety and nutrition limits
+
+- What: Draft prohibits allergy-safe, medical, laboratory-accuracy or kosher-certification claims. It proposes deterministic selected-eater blocking, label/may-contain warning, no AI targets for minors, and USDA attribution or UNKNOWN for unmatched ingredients. Evidence: PROPOSED_PRODUCT_RULES; EXPERT VALIDATION PENDING.
+- When: decided UNKNOWN (first seen 2026-10-15); source chronology: 2026-10-15
+- Why: Consumer recipe guidance must expose uncertainty and avoid inventing nutrition or certification.
+- How: R1-R5 in PRD are explicitly proposed/EXTRAPOLATED. Rough seeded macros are distinct from later exact nutrition; ingredient gram conversion and custom/all-field allergen matching remain unresolved contracts. Regulatory/provider assertions are historical research, not fresh guidance.
+- Status: MVP
+- From: S48, S47, S23, S24, S26
+
+### C11 — Bilingual accessible cooking interface
+
+- What: Warm restrained gray interface, readable ingredient-role table, light/dark modes; October draft adds English/Hebrew and mirrored RTL from start, phone tabs and desktop split view. Evidence: USER BRAND DIRECTION PLUS PROPOSED DESIGN TOKENS.
+- When: decided UNKNOWN (first seen 2025-08-12); source chronology: 2025-08-12 and 2026-10-15
+- Why: Reduce cognitive load and support use while cooking.
+- How: Plain ingredient/job/swap labels, large touch targets, text beyond color, reduced motion, keyboard/focus/screen-reader support and clear loading/error/refusal states. Specific amber/font/spacing tokens are proposals. Cook mode timing, tab label and spinner versus text-only loading conflict remain open.
+- Status: MVP
+- From: S101, S45, S46
+
+### Ask: convert
+
+- What: Adapt a supplied recipe to selected eater constraints while explaining ingredient roles and compromises.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: Fit cooking help to the actual requested job and constraints.
+- How: One request brief plus chosen eaters and kitchen context; classify intent and return RecipeCard, AnswerCard or a refusal under the accepted output contract.
+- Status: MVP
+- From: S48, S36
+
+### Ask: copycat
+
+- What: Recreate a requested dish under available equipment and ingredient constraints. Rough and99% are requested fidelity mode labels; no measured99% similarity is proved.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: Fit cooking help to the actual requested job and constraints.
+- How: One request brief plus chosen eaters and kitchen context; classify intent and return RecipeCard, AnswerCard or a refusal under the accepted output contract.
+- Status: MVP
+- From: S48, S36
+
+### Ask: substitute
+
+- What: Explain an ingredient replacement in the recipe context, including function, amount uncertainty and likely failure risk.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: Fit cooking help to the actual requested job and constraints.
+- How: One request brief plus chosen eaters and kitchen context; classify intent and return RecipeCard, AnswerCard or a refusal under the accepted output contract.
+- Status: MVP
+- From: S48, S36
+
+### Ask: troubleshoot
+
+- What: Return an AnswerCard for an observed cooking problem; do not fabricate a full recipe when advice is the requested output.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: Fit cooking help to the actual requested job and constraints.
+- How: One request brief plus chosen eaters and kitchen context; classify intent and return RecipeCard, AnswerCard or a refusal under the accepted output contract.
+- Status: MVP
+- From: S48, S36
+
+### Ask: develop
+
+- What: Develop a recipe from a supplied goal and constraints; commercial suitability is not certified.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: Fit cooking help to the actual requested job and constraints.
+- How: One request brief plus chosen eaters and kitchen context; classify intent and return RecipeCard, AnswerCard or a refusal under the accepted output contract.
+- Status: MVP
+- From: S48, S36
+
+### Ask: plan tonight
+
+- What: Coordinate one to three dishes in the draft request scope; full weekly planning belongs to later accepted scope.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: Fit cooking help to the actual requested job and constraints.
+- How: One request brief plus chosen eaters and kitchen context; classify intent and return RecipeCard, AnswerCard or a refusal under the accepted output contract.
+- Status: MVP
+- From: S48, S36
+
+### Private Cookbook
+
+- What: Save v1, reopen it, and create a new immutable version for conversion or improvement. Recipes are private in MVP; sharing is not adopted.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: UNKNOWN for this individual feature; the parent product rationale is in the linked claim.
+- How: UNKNOWN beyond the linked draft contract.
+- Status: MVP
+- From: S36
+
+### Cook log and improvement
+
+- What: Attach the observed outcome/note to the version actually cooked; a later version explains what changed because of that log. Five baking outcomes are too narrow for some intended requests.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: UNKNOWN for this individual feature; the parent product rationale is in the linked claim.
+- How: UNKNOWN beyond the linked draft contract.
+- Status: MVP
+- From: S36
+
+### Household and kitchen profile
+
+- What: Store selected eaters, coded and free-text allergens, diets, kosher preferences, sensory notes, age category, externally supplied targets, equipment, exclusions and region. Multi-account household sharing remains open.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: UNKNOWN for this individual feature; the parent product rationale is in the linked claim.
+- How: UNKNOWN beyond the linked draft contract.
+- Status: MVP
+- From: S44, S47, S46
+
+### Ingredient function and risk presentation
+
+- What: Show original ingredient, its job, proposed replacement, risk flags, steps and a compromise line. All food-instructing fields must be included in the accepted constraint contract.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: UNKNOWN for this individual feature; the parent product rationale is in the linked claim.
+- How: UNKNOWN beyond the linked draft contract.
+- Status: MVP
+- From: S44, S47, S46
+
+### Nutrition source and UNKNOWN
+
+- What: Rough seeded nutrition must identify its source and version. Unknown foods or unvalidated unit-to-gram conversions cannot acquire invented numbers. Exact fiber/polyol mode is later.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: UNKNOWN for this individual feature; the parent product rationale is in the linked claim.
+- How: UNKNOWN beyond the linked draft contract.
+- Status: MVP
+- From: S48, S47, S23, S24, S26
+
+### Selected-eater allergen behavior
+
+- What: Draft R1 intends a deterministic gate across every selected eater and custom value; ingredient-only scanning cannot establish that promise. Expert-reviewed terms and all-field tests are acceptance prerequisites.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: UNKNOWN for this individual feature; the parent product rationale is in the linked claim.
+- How: UNKNOWN beyond the linked draft contract.
+- Status: MVP
+- From: S48, S47, S23, S24, S26
+
+### Minor and certification limits
+
+- What: Draft R2 refuses AI-set calorie/macro targets for minors; R3/R5 prohibit clinical/lab/kosher-certification claims. These are proposed rules awaiting explicit adoption, not certification proof.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: UNKNOWN for this individual feature; the parent product rationale is in the linked claim.
+- How: UNKNOWN beyond the linked draft contract.
+- Status: MVP
+- From: S48, S47, S23, S24, S26
+
+### Readable bilingual interface
+
+- What: English/Hebrew, RTL, light/dark, large targets, plain ingredient-role labels, keyboard focus and explicit refusal/error states. Specific tokens and spinner/loading differences remain open.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: UNKNOWN for this individual feature; the parent product rationale is in the linked claim.
+- How: UNKNOWN beyond the linked draft contract.
+- Status: MVP
+- From: S101, S45, S46
+
+### Explicit exclusions
+
+- What: No billing in the kitchen, scraping in MVP, social feed or household sharing in MVP, or unrequested vegan substitutions. Pantry/computer-vision product identity was explicitly rejected in the20March user decision; October recipe-photo import is a separate later proposal.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: Preserve the requested standalone recipe and batch workflow rather than infer a different product.
+- How: Keep these boundaries visible in requirements and future acceptance checks.
+- Status: Dropped
+- From: S94, S95
+
+### C14 — Later import, planning and professional scope
+
+- What: Gen 1 proposes URL/photo import, weekly plan and consolidated shopping list, simplification, technique-aware scaling/batching/costing, exact fiber/polyol nutrition and iOS. Evidence: FUTURE_ROADMAP; NOT KITCHEN REQUIREMENTS.
+- When: decided UNKNOWN (first seen 2026-10-15); source chronology: 2026-10-15
+- Why: Move from a validated individual recipe loop toward household planning and professional recipe development.
+- How: Import/photo is distinct from rejected pantry-vision identity. Tenfold scaling must preserve ratios and flag technique changes; exact nutrition needs named data/energy factors. BYOC remains parked pending approval; knowledge-versus-import order is unresolved.
+- Status: Gen 1
+- From: S37
+
+## MVP acceptance boundaries
+
+| Contract | Acceptance evidence | Backlog |
 |---|---|---|
-| 1 | Bun as the only package manager | **Not met.** pnpm 10.26.2, `pnpm-lock.yaml`, `pnpm-workspace.yaml` |
-| 2 | Every key slot listed (`.env.example` + `docs/ENV.md`) (A-Oct goal D1) | Partly. Names in `PROVIDERS.md` and per-app `.env.example`. `docs/ENV.md` missing. |
-| 3 | Sign-in works on first deploy: magic link (A-Oct goal D2) | **Not met.** Password sign-in only. Magic link is planned (ticket M-AUTH). |
-| 4 | Setup pulls keys from 1Password. No value written to a file or printed. (A-Oct goal D3) | In progress in an open PR (setup-secrets script). Not merged. |
-| 5 | Factory pieces built in: CI, review, `claude.yml`, Cursor environment, issue template, labels, `AGENTS.md` (A-Oct goal D4) | Partly. CI jobs are stubs. No Cursor `environment.json` found at root. |
-| 6 | Privacy, Terms (and Cookies) pages | Partly. Privacy + Terms exist in Hebrew only on web. No Cookies page. No English. |
-| 7 | Real CI: lint, typecheck, tests, build, Playwright smoke, secret scan (A-Oct goal E2) | **Not met.** Six named jobs only echo "STUB". No secret scan. |
-| 8 | Payments split: Polar (web), RevenueCat (mobile) | Met (skeleton) |
-| 9 | Wiki + how-tos | Partly. `docs/wiki/Home.md`, `Tickets.md` in repo. GitHub wiki content UNKNOWN. |
+| Useful Ask response | RecipeCard, AnswerCard or refusal matches requested intent; uncertainty retained; malformed output cannot become a success | CA-02, CA-08 to CA-17 |
+| Ownership | Two approved users cannot enumerate, read or mutate each other's household, recipe, version, log or note, including direct identifiers | CA-03, CA-18, CA-20, CA-23, CA-24 |
+| Version history | Save v1; log exact version; improve to v2 with changedBecause; original content/log never mutated | CA-18 to CA-22 |
+| Constraints | All selected eaters and all food-instructing fields checked against accepted terms; one regeneration then refusal after a violation | CA-05, CA-07, CA-08 |
+| Nutrition | Validated mass conversions, named source/version and UNKNOWN on absent data; no invented precision | CA-06, CA-50 later |
+| Accessible bilingual experience | EN/HE, RTL, light/dark, keyboard/focus, mobile and desktop; actual device proof separate | CA-27, CA-32 |
+| Data rights | Authorized export, accepted soft-delete semantics, resumable relational erasure and suppression of delayed writes | CA-25, CA-26 |
+| Launch quality | Real kitchen checks and expert-owned gold set; incomplete human grading is not pass | CA-29, CA-30 |
 
-## 4. Never
+No medical recommendation, allergy-safe claim, laboratory accuracy or kosher certification is established. These are proposed product safeguards requiring accepted wording and qualified review, not health advice from this document. Original sources include personal circumstances; those are excluded from product requirements.
 
-1. pnpm, npm or yarn as the package manager. (AMIT 3 Oct)
-2. Secret values in the repo, docs, logs or PRs. Names only.
-3. Polar Convex stubs (`convex/polar.ts`, `convex/convex.config.ts`) unless asked. (REPO `HARD_RULES.md`)
-4. Weakening a check. (A-Oct)
-5. Any "Sol" model, Fable, Astra, Opus or Soul writing code. (A-Oct)
-6. OpenRouter. Composio (replaced by Executor). (Factory Decisions 18 Sep)
+## Commercial proposal
 
-## 5. Decisions folded in (1–3 Oct)
+### C12 — Launch MVP and monetization
 
-| Decision | Source |
-|---|---|
-| Template has every key slot, sign-in and factory piece. New app → live preview in one day. | Weekend plan, 1–2 Oct |
-| Bun only. (The 2 Oct note still said "pnpm or Bun open"; Amit's rule now is Bun.) | AMIT 3 Oct |
-| Merge into `integration` only when CI green + Greptile 4/5+ + no open P1 + no conflicts + inside MUTATES | 1–2 Oct |
-| Greptile disconnected 3 Oct. Bugbot is the reviewer for now. | 3 Oct |
-| Only Amit merges to `master` and deploys live | 30 Sep; 1–2 Oct |
-| Code models mid-tier. Codex: GPT-5.6 Terra or GPT-6 Luna. Never "Sol" models. | A-Oct |
-| Repos move to org Levidavidspublic. Shared secrets become org secrets. | 3 Oct |
-| UX/UI work next week; Taby is a named reference | Weekend goals §4 |
+- What: After kitchen: expert-reviewed bilingual allergen dictionary, Android, legal/privacy/deletion, invite beta and expert-graded gold set; then free three requests/day and paid access. Evidence: ROADMAP_SPEC; PRICE/VENDOR OPEN.
+- When: decided UNKNOWN (first seen 2026-10-15); source chronology: 2026-10-15
+- Why: Observe real use and validate recipe quality before a public paid launch.
+- How: Draft beta thresholds ten testers and thirty graded recipes/average four/zero unsafe answers are targets; ten testers explicitly EXTRAPOLATED. Payment vendor, price/currency, household entitlement granularity and webhook contract unresolved. Web and Android entitlements need separate proven purchase paths.
+- Status: MVP
+- From: S37, S48, S47
 
-## 6. Known mismatches (not fixed in this PR)
+### No Stripe seller path
 
-| # | Says | Reality |
-|---|---|---|
-| M1 | Amit: Bun only | Repo: pnpm everywhere (`package.json`, lockfile, `AGENTS.md`, `HARD_RULES.md`, `README.md`, CI stub text) |
-| M2 | Repo description: "Universal pnpm monorepo template (Convex + Vercel + Expo Go)" | Should say Bun |
-| M3 | `README.md`, `docs/TEMPLATE_STATE.md`: default branch `master` | GitHub default branch is `integration` (REPO 3 Oct) |
-| M4 | `HARD_RULES.md` §6: seven-field tickets, `GOAL:` first | Factory standard is eleven fields (Factory Decisions 18 Sep) |
-| M5 | `PROVIDERS.md` lists `COMPOSIO_API_KEY` | Composio is replaced by Executor (18 Sep) |
-| M6 | Goal: real CI | `ci.yml` jobs are stubs |
+- What: No Stripe merchant setup. Draft product rail proposals and inherited Polar/RevenueCat wiring remain unresolved; no price or currency is accepted here.
+- When: decided2026-10-19 (first seen2026-10-19)
+- Why: Amit states he cannot use Stripe as a seller in Israel.
+- How: No live payment, signup, account or entitlement mutation in this lane. Resolve merchant eligibility and accepted webhook/access contract before a later billing ticket.
+- Status: MVP
+- From: S114, S37, S48, S47
 
-## Open questions
+### Entitlement and limit authority
 
-1. Bun switch: one config-lane ticket, or several (lockfile, scripts, CI, docs)?
-2. Should the template ship the sign-up cap (30) and the approval flow?
-3. Which legal pages exactly: Privacy, Terms, Cookies? English and Hebrew?
-4. How is the template used in Bolt: import from GitHub, or export from Bolt into it? UNKNOWN.
-5. Does Bolt run Bun? UNKNOWN.
+- What: Free three requests/day and an unlimited paid tier are October draft proposals. Household availability overlaps between basic setup and paid wording. Authenticity, user binding, dedupe, event ordering, revocation and post-deletion behavior require a written contract; unlimited wording is not spend authorization.
+- When: decided UNKNOWN (first seen 2026-10-15); draft scope, not default-branch adoption
+- Why: UNKNOWN for this individual feature; the parent product rationale is in the linked claim.
+- How: Server-owned verified customer/entitlement transitions; no client-set paid state. Provider specifics remain UNKNOWN.
+- Status: MVP
+- From: S37, S48, S47
 
-## Sources
+## Exclusions and open scope
 
-- Repo `integration` 3 Oct: `README.md`, `AGENTS.md`, `HARD_RULES.md`, `ROADMAP.md`, `PROVIDERS.md`, `BILLING.md`, `UNKNOWNS.md`, `docs/VISION.md`, `docs/TEMPLATE_STATE.md`, `package.json`, `.github/workflows/*`, app folders, repo description.
-- Basic Memory (project Main, folder factory/): "Factory Decisions — 2026-09-18", "Weekend factory plan 2026-10-02", "Weekend goals 2026-10-02", "Next week — factory decisions and research 2026-10-03", "Factory merge and deploy policy".
-- `plan-v4/PLAN-FINAL.md`.
+No pantry-photo recognition: the 2026-03-20 user correction supersedes that historical interpretation. Recipe-photo text import is a separate Gen 1 proposal. No MVP household/social sharing, automatic shopping purchase, autonomous calendar action, kitchen billing, or bring-your-own-subscription integration. Gen 2 scope is UNKNOWN. A marketing fidelity label is never a measured percentage.
+
+The original broad vision and September control assignment are historical inputs. The latest accepted default-branch law remains authoritative. See DECISIONS for unresolved baseline, outcomes, notes, nutrition and entitlement contracts.
