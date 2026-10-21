@@ -1814,3 +1814,70 @@ DO NOT: Merge, deploy, spend, sign up, reveal credentials, send messages, invent
 REPORT: Post the authorized execution result on this ticket: status done/stuck/blocked; ticket number; command -> output; changed paths; UNKNOWNs; notes for ticket sync. Use WALK/AWAY/AT, then Done / Needs me (AT, ordered) / UNKNOWN. If source law does not authorize reporting from the execution lane, leave the report as a draft.
 
 Done (WALK): 52 complete ticket bodies, one-issue duplicate audit and conditional closure proposal. Needs me (AT): later WHEN gates and build restart. UNKNOWN: created issue URLs until publisher receipts, focused test commands and runtime acceptance.
+
+<!-- PUBLICATION-INDEX-BEGIN -->
+## Publication record - 2026-10-21
+
+WALK: The following GitHub issues exist. Implementation tickets carry `docs-sync` and `agent:blocked`; creation does not start implementation. Existing issue edits and closures remain proposals only.
+
+Draft PR: NONE. The prepared documentation branch remains local under the non-CodeRabbit cost exception.
+
+| Planning ID | GitHub issue | Purpose |
+|---|---|---|
+| CA-01 | [#6](https://github.com/Levidavidspublic/cooking-app/issues/6) | ticket |
+| CA-02 | [#7](https://github.com/Levidavidspublic/cooking-app/issues/7) | ticket |
+| CA-03 | [#8](https://github.com/Levidavidspublic/cooking-app/issues/8) | ticket |
+| CA-04 | [#9](https://github.com/Levidavidspublic/cooking-app/issues/9) | ticket |
+| CA-05 | [#10](https://github.com/Levidavidspublic/cooking-app/issues/10) | ticket |
+| CA-06 | [#11](https://github.com/Levidavidspublic/cooking-app/issues/11) | ticket |
+| CA-07 | [#12](https://github.com/Levidavidspublic/cooking-app/issues/12) | ticket |
+| CA-08 | [#13](https://github.com/Levidavidspublic/cooking-app/issues/13) | ticket |
+| CA-09 | [#14](https://github.com/Levidavidspublic/cooking-app/issues/14) | ticket |
+| CA-10 | [#15](https://github.com/Levidavidspublic/cooking-app/issues/15) | ticket |
+| CA-11 | [#16](https://github.com/Levidavidspublic/cooking-app/issues/16) | ticket |
+| CA-12 | [#17](https://github.com/Levidavidspublic/cooking-app/issues/17) | ticket |
+| CA-13 | [#18](https://github.com/Levidavidspublic/cooking-app/issues/18) | ticket |
+| CA-14 | [#19](https://github.com/Levidavidspublic/cooking-app/issues/19) | ticket |
+| CA-15 | [#20](https://github.com/Levidavidspublic/cooking-app/issues/20) | ticket |
+| CA-16 | [#21](https://github.com/Levidavidspublic/cooking-app/issues/21) | ticket |
+| CA-17 | [#22](https://github.com/Levidavidspublic/cooking-app/issues/22) | ticket |
+| CA-18 | [#23](https://github.com/Levidavidspublic/cooking-app/issues/23) | ticket |
+| CA-19 | [#24](https://github.com/Levidavidspublic/cooking-app/issues/24) | ticket |
+| CA-20 | [#25](https://github.com/Levidavidspublic/cooking-app/issues/25) | ticket |
+| CA-21 | [#26](https://github.com/Levidavidspublic/cooking-app/issues/26) | ticket |
+| CA-22 | [#27](https://github.com/Levidavidspublic/cooking-app/issues/27) | ticket |
+| CA-23 | [#28](https://github.com/Levidavidspublic/cooking-app/issues/28) | ticket |
+| CA-24 | [#29](https://github.com/Levidavidspublic/cooking-app/issues/29) | ticket |
+| CA-25 | [#30](https://github.com/Levidavidspublic/cooking-app/issues/30) | ticket |
+| CA-26 | [#31](https://github.com/Levidavidspublic/cooking-app/issues/31) | ticket |
+| CA-27 | [#32](https://github.com/Levidavidspublic/cooking-app/issues/32) | ticket |
+| CA-28 | [#33](https://github.com/Levidavidspublic/cooking-app/issues/33) | ticket |
+| CA-29 | [#34](https://github.com/Levidavidspublic/cooking-app/issues/34) | ticket |
+| CA-30 | [#35](https://github.com/Levidavidspublic/cooking-app/issues/35) | ticket |
+| CA-31 | [#36](https://github.com/Levidavidspublic/cooking-app/issues/36) | ticket |
+| CA-32 | [#37](https://github.com/Levidavidspublic/cooking-app/issues/37) | ticket |
+| CA-33 | [#38](https://github.com/Levidavidspublic/cooking-app/issues/38) | ticket |
+| CA-34 | [#39](https://github.com/Levidavidspublic/cooking-app/issues/39) | ticket |
+| CA-35 | [#40](https://github.com/Levidavidspublic/cooking-app/issues/40) | ticket |
+| CA-36 | [#41](https://github.com/Levidavidspublic/cooking-app/issues/41) | ticket |
+| CA-37 | [#42](https://github.com/Levidavidspublic/cooking-app/issues/42) | ticket |
+| CA-38 | [#43](https://github.com/Levidavidspublic/cooking-app/issues/43) | ticket |
+| CA-39 | [#44](https://github.com/Levidavidspublic/cooking-app/issues/44) | ticket |
+| CA-40 | [#45](https://github.com/Levidavidspublic/cooking-app/issues/45) | ticket |
+| CA-41 | [#46](https://github.com/Levidavidspublic/cooking-app/issues/46) | ticket |
+| CA-42 | [#47](https://github.com/Levidavidspublic/cooking-app/issues/47) | ticket |
+| CA-43 | [#48](https://github.com/Levidavidspublic/cooking-app/issues/48) | ticket |
+| CA-44 | [#49](https://github.com/Levidavidspublic/cooking-app/issues/49) | ticket |
+| CA-45 | [#50](https://github.com/Levidavidspublic/cooking-app/issues/50) | ticket |
+| CA-46 | [#51](https://github.com/Levidavidspublic/cooking-app/issues/51) | ticket |
+| CA-47 | [#52](https://github.com/Levidavidspublic/cooking-app/issues/52) | ticket |
+| CA-48 | [#53](https://github.com/Levidavidspublic/cooking-app/issues/53) | ticket |
+| CA-49 | [#54](https://github.com/Levidavidspublic/cooking-app/issues/54) | ticket |
+| CA-50 | [#55](https://github.com/Levidavidspublic/cooking-app/issues/55) | ticket |
+| CA-51 | [#56](https://github.com/Levidavidspublic/cooking-app/issues/56) | ticket |
+| CA-52 | [#57](https://github.com/Levidavidspublic/cooking-app/issues/57) | ticket |
+| proposals | [#58](https://github.com/Levidavidspublic/cooking-app/issues/58) | proposals |
+| docs-package | [#59](https://github.com/Levidavidspublic/cooking-app/issues/59) | docs-sync |
+
+This publication record supersedes earlier preparation-only status text; it does not change ticket acceptance criteria.
+<!-- PUBLICATION-INDEX-END -->
