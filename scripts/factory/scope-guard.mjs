@@ -14,6 +14,9 @@
 //    skipped: what they bring in is already on the base branch.
 // g. The `test:overlap` label only skips the dispatcher's "no two open tickets share a folder"
 //    check (Phase 04). It changes nothing here.
+// h. A PR with no ticket passes when EVERY changed file (renamed-from paths included) is in
+//    NO_TICKET_OK: the generated docs/graph/** output and the include.md sync files. AGENTS.md is
+//    deliberately not in that list (config-guard owns it). A single other path still fails as before.
 // Promotion PRs (integration -> master/main) pass.
 // Per repo (scripts/factory/scope-guard.config.json): dataFolders, and extraHotFiles (regex strings
 // added to the shared hot-file list, e.g. the backend's own config file).
@@ -29,6 +32,13 @@ export const HOT = [
   /(^|\/)routes?\.(t|j|mj)sx?$/,
 ];
 export const MERGE_FIX = /^Factory-Merge-Fix:\s*true\s*$/im;
+// Rule h: files whose PRs need no ticket. Exact paths, not prefixes, for single files.
+export const NO_TICKET_OK = [
+  /^docs\/graph\//, // generated knowledge graph (Graphify output, docs/graph/README.md)
+  /^include\.md$/, // include.md sync
+  /^CLAUDE\.md$/, // include.md sync (mirrors AGENTS.md)
+  /^docs\/factory\/MERGE_GATE\.md$/, // include.md sync
+];
 
 // Minimal front-matter reader: `key: value` and `key:` + `  - item` lists. Enough for the ticket schema.
 export function frontMatter(body) {
@@ -62,6 +72,10 @@ export function judge({ pr, labels, ticket, fm, files, commitFiles, config }) {
   const isConfig = labels.includes("config");
   if (!ticket) {
     if (isConfig) return { problems, notes: ['No ticket linked and the PR is labelled "config": scope-guard passes (config-guard judges config PRs).'] };
+    // Rule h: no ticket is fine when every changed file is graph/notes only (fail closed otherwise).
+    const allPaths = [...new Set((files || []).flatMap((f) => [f.filename, f.previous_filename].filter(Boolean)))];
+    if (allPaths.length && allPaths.every((p) => NO_TICKET_OK.some((r) => r.test(p))))
+      return { problems, notes: ["No ticket: only docs/graph/** or include.md sync files changed: passes."] };
     return { problems: ['No ticket found ("Closes #N" in the PR body) and the PR is not a "config" PR.'], notes };
   }
   if (!fm) return { problems: [`Ticket #${ticket} has no front-matter (--- block with scope: and type:).`], notes };
