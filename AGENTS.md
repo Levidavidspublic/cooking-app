@@ -3,7 +3,7 @@
 
 ## What this repo is
 A product built by a ticket-driven software factory. Agents close one ticket at a time.
-The owner keeps four things: decisions, secrets, spend, and deploys to live.
+The owner keeps decisions, secrets, and spend. See [Promotion to production](#promotion-to-production) for live deployment.
 Every tool is a slot. `factory/SLOTS.md` says which tool fills each slot in this repo.
 
 ## Read first, every session
@@ -61,7 +61,7 @@ A model named in a ticket is labelled either `code model` (the model that writes
 
 ## Never — and what enforces it
 These are explained here and enforced elsewhere. Each item names its enforcement, which is listed in SLOTS.md → Enforcement.
-- Deploy to live, or merge into the live branch. Enforced by: live-environment protection and branch protection.
+- Deploy to live or merge into the live branch outside [Promotion to production](#promotion-to-production). Enforced by: live-environment protection and branch protection.
 - Push straight to the default branch. Enforced by: branch protection (PRs only).
 - Read, print, log or commit a secret value. Enforced by: deny rules in each agent's settings, plus secret scanning.
 - Spend money the ticket doesn't authorise (paid APIs, paid services). Enforced by: scoped keys and spend caps on each provider.
@@ -94,4 +94,12 @@ notes for ticket sync: <follow-ups, doc errors, or none>
 - The review gate has passed: Bugbot has no unresolved findings (when Phase F is on).
 - The report is posted on the ticket.
 
-What happens after that is automatic: the PR merges into integration and integration deploys to preview. Deploying to live is the owner's job.
+What happens after that is automatic: the PR merges into integration and integration deploys to preview. For live deployment, see [Promotion to production](#promotion-to-production).
+
+## Promotion to production
+
+- Amit and his agents may apply labels allowed by the existing guards and merge through this flow: ticket PRs → batch branch → CodeRabbit review on the batch PR → `integration`, which deploys to preview. The config PR path stays separate and follows its existing guard and current-head approval requirements.
+- Count one preview for each PR merged into `integration`. Every five previews since the last promotion, open a release PR from `integration` into the production branch, once it exists. Merge only when CodeRabbit is clear on the release PR, every required check on the current head is green, and the PR is up to date. Use a merge commit, not a squash or rebase, so the production branch matches the reviewed `integration` tree and the promotion can be undone with one revert.
+- Verify that the production deployment succeeds and the production URL returns HTTP 200. If either check fails, automatically open a PR into the production branch that reverts the promotion merge commit. Merge the revert PR only after its required checks are green, then verify the restored deployment.
+- Log every production promotion and rollback in Concord, with the PR, merge SHA, and production verification result.
+- Never push directly to the production branch, never `--admin`, never weaken a check, never merge a `REVIEW ONLY` PR. No bypasses.

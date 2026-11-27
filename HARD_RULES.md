@@ -15,7 +15,7 @@ product section; they must not weaken the template section.
 - **GitHub Issues is the queue.** Cursor executes against it. Squad watches,
   comments, and escalates. Nothing creates a second authority over the queue.
 - **Merging into `integration` follows rule 1.4** (Amit, 2 Oct 2026): auto-merge is OFF until the merge-gate proof (D4) passes. Until then a PR merges into `integration` only when all required checks are green, Greptile passes, there are no conflicts, and every changed file is inside the ticket's MUTATES list. The orchestrator or the tester worker clicks merge, then checks the preview.
-  Only Amit merges `integration` into `master` (Gate 2). Never merge into `master`.
+  Production merges (Gate 2) follow [Promotion to production](AGENTS.md#promotion-to-production).
 - **Never push to the protected base** (`master` today; Week-0 also names
   `main` / `integration`). All work lands through a pull request.
 - **One logical change per PR.** Conventional Commits titles.
